@@ -14,6 +14,7 @@ TtgoButton::TtgoButton(int _pin) {
   waitForSingleClick = false;
   callbackDone = true;
   allowSingleClickMillis = 0;
+  longPressRepeatMillis = LONG_REPEAT_MS;
   result = RESULT_NONE;
 }
 
@@ -21,19 +22,23 @@ TtgoButton::TtgoButton(int _pin, ButtonCallback* _callback) : TtgoButton(_pin) {
   callback = _callback;
 }
 
-void TtgoButton::registerCallback(ButtonCallback* _callback) {
+void TtgoButton::RegisterCallback(ButtonCallback* _callback) {
   callback = _callback;
 }
 
-void TtgoButton::setPressedOnHigh(bool high) {
+void TtgoButton::SetPressedOnHigh(bool high) {
   pinLevelPressed = high ? HIGH : LOW;
+}
+
+void TtgoButton::SetLongPressRepeatMillis(long millis) {
+  longPressRepeatMillis = millis;
 }
 
 long diffToNow(long timeMs) {
   return millis() - timeMs;
 }
 
-void TtgoButton::listen() {
+void TtgoButton::Listen() {
   if (result != RESULT_LONG_CLICK) {
      result = RESULT_NONE;
   }
@@ -91,7 +96,7 @@ void TtgoButton::listen() {
   if ((result == RESULT_LONG_CLICK) && !preventDoubleClick && !callbackDone) {
     preventSingleClick = true;
     callbackDone = true;
-    nextRepeatLongMillis = millis() + LONG_REPEAT_MS;
+    nextRepeatLongMillis = millis() + longPressRepeatMillis;
     callback->onButtonPressed(RESULT_LONG_CLICK);
   }
 }

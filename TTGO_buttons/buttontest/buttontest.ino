@@ -20,10 +20,11 @@ TtgoButton btn1(BTN1, &ttgoCallback);
 void setup() {
   Serial.begin(9600);
   while (!Serial) delay(1);
+  btn1.SetLongPressRepeatMillis(500); // demo only, slow down things
 }
 
 void loop() {
-  btn0.listen();
-  btn1.listen();
+  btn0.Listen();
+  btn1.Listen();
   delay(1);
 }
