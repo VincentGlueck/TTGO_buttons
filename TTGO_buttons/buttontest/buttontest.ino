@@ -14,6 +14,7 @@ public:
 };
 
 ButtonCallback ttgoCallback;
+TtgoButton btn0(BTN0, &ttgoCallback);
 TtgoButton btn1(BTN1, &ttgoCallback);
 
 void setup() {
@@ -22,6 +23,7 @@ void setup() {
 }
 
 void loop() {
+  btn0.listen();
   btn1.listen();
   delay(1);
 }
