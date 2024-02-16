@@ -20,7 +20,7 @@ public:
 
   class ButtonCallback {
     public:
-      virtual void onButtonPressed(const int& result);
+      virtual void onButtonPressed(const int& pin, const int& result);
   };
 
   TtgoButton(int _pin = BTN0);

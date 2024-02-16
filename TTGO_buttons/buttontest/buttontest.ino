@@ -4,7 +4,8 @@ uint16_t globalCnt;
 
 class ButtonCallback : public TtgoButton::ButtonCallback {
 public:
-  void onButtonPressed(const int &result) override {
+  void onButtonPressed(const int& btnPin, const int &result) override {
+    Serial.print("pin " + String(btnPin) + " :: ");
     switch (result) {
       case RESULT_CLICK: Serial.println("click"); break;
       case RESULT_LONG_CLICK: Serial.println("long click"); break;

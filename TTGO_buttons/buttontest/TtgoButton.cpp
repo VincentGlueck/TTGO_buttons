@@ -76,7 +76,7 @@ void TtgoButton::Listen() {
     if ((millis() > resultNotBeforeMillis) && !callbackDone) {
       doubleClickCount = 0;
       callbackDone = true;
-      callback->onButtonPressed(RESULT_CLICK);
+      callback->onButtonPressed(pin, RESULT_CLICK);
     }
     lastDoubleLowMillis = millis();
     lastLowMillis = -1;
@@ -91,12 +91,12 @@ void TtgoButton::Listen() {
     doubleClickCount = 0;
     preventSingleClick = false;
     allowSingleClickMillis = 0;
-    callback->onButtonPressed(RESULT_DOUBLE_CLICK);
+    callback->onButtonPressed(pin, RESULT_DOUBLE_CLICK);
   }
   if ((result == RESULT_LONG_CLICK) && !preventDoubleClick && !callbackDone) {
     preventSingleClick = true;
     callbackDone = true;
     nextRepeatLongMillis = millis() + longPressRepeatMillis;
-    callback->onButtonPressed(RESULT_LONG_CLICK);
+    callback->onButtonPressed(pin, RESULT_LONG_CLICK);
   }
 }
