@@ -3,9 +3,9 @@
 _TTGO buttons made (quite) easy._
 
 __Supports__:
-* single press
-* long press
-* double-press
+* single press/click
+* long press/click
+* double press/click
 
 ![button_raw](https://github.com/VincentGlueck/TTGO_buttons/assets/139572548/d15c4452-1c30-4bdd-b33b-c120470eabb4)
 
