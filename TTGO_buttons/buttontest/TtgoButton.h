@@ -1,7 +1,5 @@
 #ifndef _TTGOBUTTON_H
 #define _TTGOBUTTON_H
-#include "Arduino.h"
-#include "TtgoCallback.h"
 
 #define BTN0 0
 #define BTN1 35
@@ -19,14 +17,25 @@
 
 class TtgoButton {
 public:
+
+  class ButtonCallback {
+    public:
+      virtual void onButtonPressed(const int& result);
+  };
+
   TtgoButton(int _pin = BTN0);
-  TtgoButton(int _pin, TtgoCallback* _callback);
+  TtgoButton(int _pin, ButtonCallback* _callback);
   void listen();
-  void registerCallback(TtgoCallback* _callback);
+  void registerCallback(ButtonCallback* _callback);
+  void setPressedOnHigh(bool high = false); // if for some reason Pin level HIGH means "pressed"
+
+  
+  
 
 private:
-  TtgoCallback* callback;
+  ButtonCallback* callback;
   bool callbackDone;
+  int pinLevelPressed;
   int pin;
   long lastLowMillis;
   int result;
@@ -39,6 +48,7 @@ private:
   long resultNotBeforeMillis;
   long lastDoubleLowMillis;
   int doubleClickCount;
+  long allowSingleClickMillis;
 };
 
 #endif

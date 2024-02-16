@@ -2,7 +2,7 @@
 
 uint16_t globalCnt;
 
-class ButtonCallback : public TtgoCallback {
+class ButtonCallback : public TtgoButton::ButtonCallback {
 public:
   void onButtonPressed(const int &result) override {
     switch (result) {
